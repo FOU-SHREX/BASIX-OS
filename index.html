@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASIX OS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="welcomeScreen">
+  <h1>Welcome to BASIX OS</h1>
+  <p>A OS MADE BY CAPYBARA.</p> 
+  <button id="startBtn">Start BASIX</button>
+</div>
+
+<div id="desktopScreen" hidden>
+    <h2>BASIX Desktop</h2>
+    <p>Welcome to pond of capybara.</p>
+    <button id="openNotes">Open Capy Notes</button>
+    <button id="openAbout">Open Capy Info</button>
+    <div id="notesWindow" class="app-window">
+        <div class="window-title">
+            <span>Capy Notes</span>
+            <div class="window-buttons">
+                <button id="closeNotes" class="window-dot red" aria-label="Close notes"></button>
+                <button class="window-dot yellow" aria-label="Minimize notes"></button>
+                <button class="window-dot green" aria-label="Maximize notes"></button>
+            </div>
+        </div>
+    <textarea placeholder="Write something..."></textarea>
+    <button id="copyNotes">Copy</button>
+    </div>
+    <div id="aboutWindow" class="app-window">
+        <div class="window-title">
+            <span>Capy Info</span>
+            <button id="closeAbout" class="window-dot red" aria-label="Close Info"></button>
+        </div>
+
+        <div class="about-content">
+            <h3>BASIX OS</h3>
+            <p>Welcome stanger you want to know about the Capy the Capybara...</p>
+            <p>Here Capy telling about himself ......    （￣︶￣）↗ .....  </p>
+            <p>Capy CApy Caapy Cappy Capyy CAppy .....</p>
+            <p>Hola i want to sleep i am lazy capybara don't disturb me!</p>
+            <p>Here CAPY id busy may be he tell about him self in upcomming updates... so stay connected</p>
+        </div>
+    </div>
+    <div class="taskbar">
+        <span>BASIX OS</span>
+        <span id="clock">--:--</span>
+    </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>

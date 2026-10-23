@@ -1,0 +1,107 @@
+body {
+    background-color:papayawhip;
+    color:saddlebrown;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: saddlebrown;
+    color:white;
+    border: 1px solid khaki;
+    cursor: pointer;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background-color: saddlebrown;
+    color: papayawhip;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.app-window {
+    position: absolute;
+    top: 150px;
+    left: 40px;
+    width: 560px;
+    background-color: papayawhip;
+    border: 2px solid saddlebrown;
+}
+
+.window-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background-color: saddlebrown;
+    color: papayawhip;
+    cursor: move;
+    user-select: none;
+}
+
+.app-window textarea {
+    display: block;
+    width: calc(100% - 20px);
+    height: 280px;
+    margin: 10px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#copyNotes {
+    padding: 6px 12px;
+    margin: 0 10px 10px;
+}
+
+.window-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    background-color: saddlebrown;
+    color: papayawhip;
+}
+
+.window-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.window-dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.red {
+    background: #ff5f57;
+}
+
+.yellow {
+    background-color: #ffbd2e;
+}
+
+.green {
+    background: #28c840;
+}
+
+#aboutWindow {
+    width: 300px;
+    top: 210px;
+    left: 620px;
+}
+
+.about-content {
+    padding: 12px;
+}
