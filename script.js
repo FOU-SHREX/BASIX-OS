@@ -79,3 +79,12 @@ document.getElementById("closeAbout").addEventListener("click", function() {
 document.getElementById("openAbout").addEventListener("click", function() {
     aboutWindow.hidden = false;
 });
+
+let toplayer = 1;
+
+document.querySelectorAll(".app-window").forEach(function(app) {
+    app.addEventListener("mousedown", function() {
+        toplayer += 1;
+        app.style.zIndex = toplayer;
+    });
+});
