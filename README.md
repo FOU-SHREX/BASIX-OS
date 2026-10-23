@@ -22,7 +22,7 @@ This is my first time working on a project with HTML, CSS and JAVAScript.
 
 ## Try BASIX OS
 
-You can try BSASIX OS here:
+You can try BASIX OS here:
 
 [Launch BASIX OS](https://fou-shrex.github.io/BASIX-OS/)
 
