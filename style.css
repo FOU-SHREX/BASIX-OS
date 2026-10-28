@@ -1,3 +1,9 @@
+#loadingText {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 body {
     background-color:papayawhip;
     color:saddlebrown;
@@ -17,12 +23,12 @@ button {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 48px;
+    height: 64px;
     background-color: saddlebrown;
     color: papayawhip;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 16px;
     box-sizing: border-box;
 }
@@ -40,7 +46,8 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 10px;
+    padding: 8px 10px;
+    gap: 10px;
     background-color: saddlebrown;
     color: papayawhip;
     cursor: move;
@@ -56,18 +63,10 @@ button {
     resize: none;
 }
 
-#copyNotes {
+#copyNotes,
+#clearNotes {
     padding: 6px 12px;
     margin: 0 10px 10px;
-}
-
-.window-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    background-color: saddlebrown;
-    color: papayawhip;
 }
 
 .window-buttons {
@@ -88,20 +87,536 @@ button {
     background: #ff5f57;
 }
 
-.yellow {
-    background-color: #ffbd2e;
-}
-
-.green {
-    background: #28c840;
-}
-
 #aboutWindow {
-    width: 300px;
-    top: 210px;
-    left: 620px;
+    width: 360px;
+    max-width: calc(100vw - 120px);
+    top: 100px;
+    left: 80px;
 }
 
 .about-content {
     padding: 12px;
+    max-height: calc(100vh - 230px);
+    overflow-y: auto;
+    scrollbar-width: auto;
+    scrollbar-color: #8b4513 #f5e6d3;
+}
+
+.desktop-apps {
+    display: flex;
+    gap: 12px;
+}
+
+.desktop-app {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0c48a;
+    color: saddlebrown;
+    border: 1px solid khaki;
+    border-radius: 10px;
+    font-size: 28px;
+    line-height: 1;
+}
+
+#clockWindow {
+    width: 280px;
+    top: 130px;
+    left: 360px;
+}
+
+.clock-content {
+    padding: 20px;
+    text-align: center;
+}
+
+#welcomeScreen {
+    position: fixed;
+    inset: 0;
+    background-color: #F5E6D3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2000;
+}
+
+.welcome-image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid #B58C67;
+}
+
+#welcomeScreen[hidden] {
+    display: none;
+}
+
+#desktopScreen[hidden] {
+    display: none;
+}
+
+
+.loading-bar {
+    width: 240px;
+    height: 10px;
+    background-color: #E8C9A7;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.loading-fill {
+    width: 0;
+    height: 100%;
+    background-color: #6B4A36;
+    animation: loadingProgress 3s linear forwards;
+}
+
+@keyframes loadingProgress {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+#desktopScreen {
+    min-height: 100vh;
+    background-color: #F5E6D3;
+}
+
+.desktop-wallpaper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid #B58C67;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.terminal-icon {
+    width: 36px;
+    height: 36px;
+}
+
+
+#terminalWindow {
+    width: 500px;
+    top: 180px;
+    left: 200px;
+}
+
+.terminal-body {
+    background-color: #2C241D;
+    color: #FFF8EE;
+    padding: 16px;
+    height: 280px;
+    font-family: Consolas, monospace;
+    overflow-y: auto;
+}
+
+#terminalInput {
+    width: 100%;
+    background-color: transparent;
+    color: #F0C48A;
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    font: inherit;
+}
+
+#terminalOutput {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+#calculatorWindow {
+    width: 300px;
+    top: 170px;
+    left: 220px;
+}
+
+.calculator-body {
+    padding: 12px;
+    background-color: #f7ead7;
+}
+
+#calcDisplay {
+    width: 100%;
+    height: 56px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    padding: 0 12px;
+    border: 2px solid #B58C67;
+    background-color: #fffaf3;
+    color: saddlebrown;
+    font-size: 28px;
+    text-align: right;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calculator-buttons button {
+    height: 54px;
+    padding: 0;
+    border: 1px solid khaki;
+    border-radius: 8px;
+    background-color: #a65a16;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.calculator-buttons button[data-value="/"],
+.calculator-buttons button[data-value="*"],
+.calculator-buttons button[data-value="-"],
+.calculator-buttons button[data-value="+"] {
+    background-color: #c47a2c;
+}
+
+.calculator-buttons button[data-value="C"] {
+    background-color: #7c3f12;
+}
+
+.calculator-buttons button[data-value="="] {
+    grid-column: span 4;
+    background-color: #e6b97a;
+    color: saddlebrown;
+}
+
+#galleryWindow {
+    width: 380px;
+    top: 160px;
+    left: 450px;
+}
+
+.gallery-body {
+    padding: 12px;
+    text-align: center;
+}
+
+#galleryImage {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+#galleryCaption {
+    margin: 12px 0;
+}
+
+.gallery-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gallery-buttons button {
+    padding: 8px 14px;
+    border-radius: 6px;
+}
+
+#settingsWindow {
+    width: 350px;
+    top: 180px;
+    left: 550px;
+}
+
+.settings-body {
+    padding: 16px;
+}
+
+.settings-body button {
+    padding: 10px 14px;
+    margin: 5px;
+    border-radius: 6px;
+}
+
+body.dark-theme {
+    background-color: #241d18;
+    color: #f0e1ce;
+}
+
+body.dark-theme #desktopScreen {
+    background-color: #241d18;
+}
+
+body.dark-theme .app-window {
+    background-color: #382d25;
+    border-color: #bf9167;
+}
+
+body.dark-theme .window-title {
+    background-color: #654028;
+    color: #fff2e4;
+}
+
+body.dark-theme .taskbar {
+    background-color: #49301f;
+}
+
+body.dark-theme .desktop-app {
+    background-color: #70503a;
+    color: #fff1dd;
+    border-color: #9a7250;
+}
+
+body.dark-theme .calculator-body {
+    background-color: #382d25;
+}
+
+body.dark-theme #calcDisplay,
+body.dark-theme #notesWindow textarea {
+    background-color: #241d18;
+    color: #fff2e4;
+    border-color: #9a7250;
+}
+
+body.dark-theme .settings-body button,
+body.dark-theme .gallery-buttons button,
+body.dark-theme #copyNotes,
+body.dark-theme #clearNotes {
+    background-color: #7c512b;
+    color: #fff1dd;
+    border-color: #9a7250;
+}
+
+body.dark-theme #welcomeScreen {
+    background-color: #241d18;
+    color: #f0e1ce;
+}
+
+body.dark-theme .loading-bar {
+    background-color: #70503a;
+}
+
+body.dark-theme .loading-fill {
+    background-color: #bf9167;
+}
+
+body.dark-theme .welcome-image {
+    border-color: #bf9167;
+}
+
+body.dark-theme .about-content {
+    scrollbar-color: #bf9167 #382d25;
+}
+
+#welcomeScreen h1 {
+    font-family: "Chewy", cursive;
+    font-size: 46px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+#desktopScreen > h2 {
+    font-family: "Chewy", cursive;
+    font-size: 34px;
+    font-weight: 400;
+}
+
+#welcomeScreen p,
+#desktopScreen > p {
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 18px;
+}
+
+#clickerWindow {
+    width: 340px;
+    top: 150px;
+    left: 250px;
+}
+
+.clicker-body {
+    padding: 16px;
+    text-align: center;
+}
+
+#clickCapy {
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#clickCapy img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #B58C67;
+    border-radius: 16px;
+    transition: transform 0.1s;
+}
+
+#clickCapy:active img {
+    transform: scale(0.94);
+}
+
+#clickerMessage {
+    min-height: 40px;
+}
+
+#capyReaction {
+    position: fixed;
+    top: calc(50% + 135px);
+    left: 50%;
+    transform: translate(-50%);
+    max-width: calc(100vw - 32px);
+    width: max-content;
+    padding: 10px 15px;
+    background-color: #fff0d7;
+    color: #8b4513;
+    border: 1px solid #b58c67;
+    border-radius: 10px;
+    text-align: center;
+    pointer-events: none;
+}
+
+body.dark-theme #capyReaction {
+    background-color: #49301f;
+    color: #fff1dd;
+    border-color: #bf9167;
+}
+
+#paintWindow {
+    width: 460px;
+    max-width: calc(100vw - 20px);
+    box-sizing: border-box;
+    top: 120px;
+    left: 310px;
+}
+
+.paint-body {
+    padding: 12px;
+    text-align: center;
+}
+
+#paintCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: white;
+    border: 2px solid #b58c67;
+    box-sizing: border-box;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.paint-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.paint-tools button {
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.paint-tools button[data-color] {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 2px solid #b58c67;
+}
+
+#paintStatus {
+    font-size: 14px;
+}
+
+body.dark-theme .paint-tools button:not([data-color]) {
+    background-color: #7c512b;
+    color: #fff1dd;
+    border-color: #9a7250;
+}
+
+#achievementWindow {
+    width: 360px;
+    max-width: calc(100vw - 20px);
+    top: 140px;
+    left: 400px;
+}
+
+.achievement-body {
+    padding: 15px;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    scrollbar-color: #8b4513 #f5e6d3;
+}
+
+.achievement-body h3 {
+    text-align: center;
+}
+
+#achievementList p {
+    padding: 12px;
+    border: 1px solid #b58c67;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+body.dark-theme #achievementList p {
+    border-color: #bf9167;
+}
+
+body.dark-theme .achievement-body {
+    scrollbar-color: #bf9167 #382d25;
+}
+
+#achievementToast {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 3000;
+    max-width: calc(100vw - 40px);
+    padding: 14px;
+    background-color: #fff0d7;
+    color: #8b4513;
+    border: 1px solid #b58c67;
+    border-radius: 10px;
+}
+
+body.dark-theme #achievementToast {
+    background-color: #49301f;
+    color: #fff1dd;
+    border-color: #bf9167;
+}
+
+@media (max-width: 650px) {
+    .taskbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+
+    .desktop-apps {
+        flex-shrink: 0;
+        gap: 8px;
+    }
+
+    .desktop-app {
+        flex-shrink: 0;
+    }
+
+    #desktopScreen .app-window {
+        left: 10px;
+        max-width: calc(100vw - 20px);
+        box-sizing: border-box;
+    }
 }

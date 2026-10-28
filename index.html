@@ -4,52 +4,303 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BASIX OS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="welcomeScreen">
+  <img src="assets/welcome-capy.png" alt="Welcome Capybara" class="welcome-image">
   <h1>Welcome to BASIX OS</h1>
   <p>A OS MADE BY CAPYBARA.</p> 
-  <button id="startBtn">Start BASIX</button>
+  <p id="loadingText">Loading BASIX OS...</p>
+  <div class="loading-bar">
+    <div class="loading-fill"></div>
+  </div>
 </div>
 
 <div id="desktopScreen" hidden>
+    <img src="assets/capy-wallpaper.png" alt="Capybara-wallpaper" class="desktop-wallpaper" role="button" tabindex="0" aria-label="Talk to Capy">
+    <p id="capyReaction">Click CAPY... if you dare!</p>
     <h2>BASIX Desktop</h2>
     <p>Welcome to pond of capybara.</p>
-    <button id="openNotes">Open Capy Notes</button>
-    <button id="openAbout">Open Capy Info</button>
-    <div id="notesWindow" class="app-window">
+    <div id="notesWindow" class="app-window" hidden>
         <div class="window-title">
             <span>Capy Notes</span>
             <div class="window-buttons">
                 <button id="closeNotes" class="window-dot red" aria-label="Close notes"></button>
-                <button class="window-dot yellow" aria-label="Minimize notes"></button>
-                <button class="window-dot green" aria-label="Maximize notes"></button>
             </div>
         </div>
     <textarea placeholder="Write something..."></textarea>
     <button id="copyNotes">Copy</button>
+    <button id="clearNotes">Clear</button>
     </div>
-    <div id="aboutWindow" class="app-window">
+    <div id="aboutWindow" class="app-window" hidden>
         <div class="window-title">
             <span>Capy Info</span>
             <button id="closeAbout" class="window-dot red" aria-label="Close Info"></button>
         </div>
 
         <div class="about-content">
-            <h3>BASIX OS</h3>
-            <p>Welcome stanger you want to know about the Capy the Capybara...</p>
-            <p>Here Capy telling about himself ......    （￣︶￣）↗ .....  </p>
-            <p>Capy CApy Caapy Cappy Capyy CAppy .....</p>
-            <p>Hola i want to sleep i am lazy capybara don't disturb me!</p>
-            <p>Here CAPY id busy may be he tell about him self in upcomming updates... so stay connected</p>
+            <h3>Meet Capy </h3>
+
+            <p>Hello stranger... So you want to know about CAPY</p>
+
+            <p>Well, CAPY is a very hardworking Capybara. He works 25 hours a day doing absolutely nothing.</p>
+
+            <p>His hobbies include sleeping, eating orange, staring at random people and pretending to be busy.</p>
+
+            <p>He says he made BASIX OS all by himself. I leterally saw him sleeping the whole time, but okay boss...</p>
+
+            <p>CAPY CAPY CAAPYYYY CAPPYYYY!! (￣︶￣)</p>
+
+            <p>What did he say? Well... that's a secret for now. You'll uderstand his language in future updates.</p>
+
+            <p>Please don't disturb CAPY. He's currently recovering from the doing nothing yesterday.</p>
+
+            <p>BTW.. CAPY says he worked REALLY hard on this OS (he supervised the entire project from his bed). So if you enjoyed BASIX OS, give it a good rating... or this poor guy might need another 100 years of sleep to recover from the emotionnal damage. 🥹</p>
+
+            <p>More about CAPY coming soon... if he wakes up.</p>
         </div>
     </div>
+    <div id="clockWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Clock</span>
+            <button id="closeClock" class="window-dot red" aria-label="Close clock"></button>
+        </div>
+        <div class="clock-content">
+            <h2 id="clock">--:--</h2>
+        </div>
+    </div>
+    <div id="terminalWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy terminal</span>
+            <button id="closeTerminal" class="window-dot red" aria-label="Close terminal"></button>
+        </div>
+
+        <div class="terminal-body">
+            <p>Welcome to Capy Terminal</p>
+            <p>Type help to see commands.</p>
+            <div id="terminalOutput"></div>
+            <input id="terminalInput" type="text" placeholder="capy@basix:~$">
+        </div>
+    </div>
+
+    <div id="calculatorWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Calculator</span>
+            <button id="closeCalculator" class="window-dot red" aria-label="Close calculator"></button>
+        </div>
+
+        <div class="calculator-body">
+            <input id="calcDisplay" type="text" value="0" readonly>
+
+            <div class="calculator-buttons">
+                <button data-value="7">7</button>
+                <button data-value="8">8</button>
+                <button data-value="9">9</button>
+                <button data-value="/">÷</button>
+
+                <button data-value="4">4</button>
+                <button data-value="5">5</button>
+                <button data-value="6">6</button>
+                <button data-value="*">×</button>
+
+                <button data-value="1">1</button>
+                <button data-value="2">2</button>
+                <button data-value="3">3</button>
+                <button data-value="-">−</button>
+
+                <button data-value="0">0</button>
+                <button data-value=".">.</button>
+                <button data-value="C">C</button>
+                <button data-value="+">+</button>
+
+                <button data-value="=">=</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="galleryWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Gallery</span>
+            <button id="closeGallery" class="window-dot red" aria-label="Close gallery"></button>
+        </div>
+
+        <div class="gallery-body">
+            <img id="galleryImage" src="assets/capy-wallpaper.png" alt="Capybara">
+            <p id="galleryCaption">Capy chilling in the pond</p>
+
+            <div class="gallery-buttons">
+                <button id="prevImage">Previous</button>
+                <button id="nextImage">Next</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="settingsWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Settings</span>
+            <button id="closeSettings" class="window-dot red" aria-label="Close Settings"></button>
+        </div>
+
+        <div class="settings-body">
+            <h3>Desktop</h3>
+            <p>Choose Your Capybara wallpaper!</p>
+
+            <button id="pondWallpaper">Pond Capy</button>
+            <button id="builderWallpaper">builder Capy</button>
+            <h3>Theme</h3>
+            <p>Choose BASIX OS Theme!</p>
+            <button id="lightTheme">Light</button>
+            <button id="darkTheme">Dark</button>
+        </div>
+    </div>
+
+
+    <div id="clickerWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Clicker</span>
+            <button id="closeClicker" class="window-dot red" aria-label="Close Clicker"></button>
+        </div>
+
+        <div class="clicker-body">
+            <h3>Feed the CAPY!</h3>
+            <p>Click CAPY to collect oranges.</p>
+
+            <button id="clickCapy">
+                <img src="assets/capy-wallpaper.png" alt="Click Capybara">
+            </button>
+
+            <h2 id="clickerScore">oranges: 0</h2>
+            <p id="clickerBest">Best: 0</p>
+            <p id="clickerMessage">CAPY is waiting for the oranges...</p>
+        </div>
+    </div>
+
+
+    <div id="paintWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Paint</span>
+            <button id="closePaint" class="window-dot red" aria-label="Close Paint"></button>
+        </div>
+
+        <div class="paint-body">
+            <p>Draw something. CAPY will judge it.</p>
+
+            <canvas id="paintCanvas" width="420" height="260"></canvas>
+
+            <div class="paint-tools">
+                <button data-color="#8b4513" style="background: #8b4513" title="Brown"></button>
+                <button data-color="#e69b39" style="background: #e69b39" title="Orange"></button>
+                <button data-color="#241d18" style="background: #241d18" title="Black"></button>
+                <button data-color="#537546" style="background: #537546" title="Green"></button>
+
+                <button id="paintEraser">Eraser</button>
+                <button id="paintClear">Clear</button>
+                <button id="paintSave">Save PNG</button>
+            </div>
+
+            <p id="paintStatus">Brush: Brown</p>
+        </div>
+    </div>
+
+
+    <div id="achievementWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Achievements</span>
+            <button id="closeAchievements" class="window-dot red" aria-label="CLose Achievements"></button>
+        </div>
+
+        <div class="achievement-body">
+            <h3>CAPY's Secret Achievements</h3>
+            <p>Explore BASIX OS and find all the secrets!</p>
+
+            <p id="achievementCount">Unlocked: 0/5</p>
+
+            <div id="achievementList">
+                <p>🔒 Secret 1 - ???</p>
+                <p>🔒 Secret 2 - ???</p>
+                <p>🔒 Secret 3 - ???</p>
+                <p>🔒 Secret 4 - ???</p>
+                <p>🔒 Secret 5 - ???</p>
+            </div>
+        </div>
+    </div>
+
     <div class="taskbar">
-        <span>BASIX OS</span>
-        <span id="clock">--:--</span>
+        <div class="desktop-apps">
+            <button id="openNotes" class="desktop-app" title="Capy Notes" aria-label="Open Capy Notes">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+                    <path d="M8 7h8 M8 11h8 M8 15h5"></path>
+                </svg>
+            </button>
+            <button id="openAbout" class="desktop-app" title="Capy Info" aria-label="Open capy Info">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 11v6"></path>
+                    <circle cx="12" cy="8" r="1.1" fill="currentColor" stroke="none"></circle>
+                </svg>
+            </button>
+            <button id="openClock" class="desktop-app" title="Capy Clock" aria-label="Open Capy Clock">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 6v6l4 3"></path>
+                </svg>
+            </button>
+            <button id="openTerminal" class="desktop-app" title="Capy Terminal" aria-label="Open Capy Terminal">
+                <svg class="terminal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M7 9l3 3-3 3 M12 15h5"></path>
+                </svg>
+            </button>
+            <button id="openCalculator" class="desktop-app" title="Capy Calculator" aria-label="Open Capy Calculator">
+                <svg viewBox="0 0 24 24" width="36" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="4" y="2" width="16" height="20" rx="3"></rect>
+                    <rect x="7" y="5" width="10" height="4" rx="1"></rect>
+                    <path d="M8 13h2 M14 13h2 M8 17h2 M14 17h2"></path>
+                </svg>
+            </button>
+            <button id="openGallery" class="desktop-app" title="Capy Gallery" aria-label="Open Capy Gallery">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <circle cx="8" cy="9" r="2"></circle>
+                    <path d="M3 17l6-5 4 3 3-4 5 6"></path>
+                </svg>
+            </button>
+            <button id="openClicker" class="desktop-app" title="Capy Clicker" aria-label="Open Capy Clicker">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="13" r="8"></circle>
+                    <path d="M12 5c1-3 4-4 7-3-1 3-3 4-7 4"></path>
+                    <path d="M12 5v3"></path>
+                </svg>
+            </button>
+            <button id="openPaint" class="desktop-app" title="Capy Paint" aria-label="Open Capy Paint">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M14 4l6 6-9 9-6-6z"></path>
+                    <path d="M5 13c-2 2-2 5-3 8 3-1 6-1 8-3"></path>
+                </svg>
+            </button>
+            <button id="openAchievements" class="desktop-app" title="Capy Achievements" aria-label="Open Achievements">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M7 4h10v7a5 5 0 0 1-10 0z"></path>
+                    <path d="M7 6H4v3a4 4 0 0 0 4 4 M17 6h3v3a4 4 0 0 1-4 4"></path>
+                    <path d="M12 16v4 M8 20h8"></path>
+                </svg>
+            </button>
+            <button id="openSettings" class="desktop-app" title="Capy Settings" aria-label="Open Capy Settings">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M10 2h4l1 3 3-1 2 2-1 3 3 1v4l-3 1 1 3-2 2-3-1-1 3h-4l-1-3-3 1-2-2 1-3-3-1v-4l3-1-1-3 2-2 3 1z"/>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
+        </div>
     </div>
 </div>
   <script src="script.js"></script>
+  <script src="terminal.js"></script>
 </body>
 </html>
