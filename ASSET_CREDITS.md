@@ -24,3 +24,11 @@ The photographs were resized, converted to PNG, and placed on transparent square
 The adapted photographs remain subject to their respective Creative Commons Attribution-ShareAlike licenses.
 
 The photographers do not endorse BASIX OS.
+
+## Music
+
+- File: assets/capy-song.mp3
+- Track: Capybara
+- Artist: Сто-Личный Она-Нас
+- Source: https://youtu.be/yGJfpTRL_Sw?si=hWOOfMRWzfKKVVr7
+- License: CC0 1.0
