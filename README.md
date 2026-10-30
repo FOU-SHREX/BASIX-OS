@@ -119,3 +119,7 @@ And Repo of other webOS creators Thanks all of you for making such good things O
 
 *CAPYBARA CAPYBARA CAPYBAAARA CAPYBBBARAR*
 *CAPY is sleeping he said will work when he got good ratings*
+
+## Credits
+
+Real Capybara photo credits and licenses: [ASSET_CREDITS.md](ASSET_CREDITS.md)
