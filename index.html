@@ -24,7 +24,11 @@
     <img src="assets/capy-wallpaper.png" alt="Capybara-wallpaper" class="desktop-wallpaper" role="button" tabindex="0" aria-label="Talk to Capy">
     <p id="capyReaction">Click CAPY... if you dare!</p>
     <h2>BASIX Desktop</h2>
-    <p>Welcome to pond of capybara.</p>
+    <p id="desktopWelcome">Welcome to pond of capybara.</p>
+    <div id="desktopDateTime">
+        <span id="desktopTime"></span>
+        <span id="desktopDate"></span>
+    </div>
     <div id="notesWindow" class="app-window" hidden>
         <div class="window-title">
             <span>Capy Notes</span>
@@ -94,8 +98,10 @@
         </div>
 
         <div class="calculator-body">
-            <input id="calcDisplay" type="text" value="0" readonly>
-
+            <div class="calculator-screen">
+                <div id="calcHistory"></div>
+                <input id="calcDisplay" type="text" value="0" readonly>
+            </div>
             <div class="calculator-buttons">
                 <button data-value="7">7</button>
                 <button data-value="8">8</button>
@@ -139,6 +145,28 @@
         </div>
     </div>
 
+    <div id="musicWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Music</span>
+            <button id="closeMusic" class="window-dot red" aria-label="Close Music"></button>
+        </div>
+
+        <div class="music-body">
+           <div class="music-card">
+            <p class="music-heading">CAPY's favorite song!</p>
+            <p class="music-subtext">Press play and let CAPY vibe while BASIX OS stays open.</p>
+
+            <audio id="capyAudio" src="assets/capy-song.mp3" loop></audio>
+
+            <div class="music-controls">
+                <button id="playMusic">▶ Play</button>
+                <button id="stopMusic">⏸ Pause</button>
+            </div>
+
+            <p id="musicStatus">Status: Ready</p>
+           </div>
+        </div>
+    </div>
 
     <div id="settingsWindow" class="app-window" hidden>
         <div class="window-title">
@@ -295,6 +323,13 @@
                 <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="M10 2h4l1 3 3-1 2 2-1 3 3 1v4l-3 1 1 3-2 2-3-1-1 3h-4l-1-3-3 1-2-2 1-3-3-1v-4l3-1-1-3 2-2 3 1z"/>
                     <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
+            <button id="openMusic" class="desktop-app" title="Capy Music" aria-label="Open Capy Music">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M9 18V5l11-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="17" cy="16" r="3"></circle>
                 </svg>
             </button>
         </div>

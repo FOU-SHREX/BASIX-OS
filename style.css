@@ -5,17 +5,33 @@
 }
 
 body {
-    background-color:papayawhip;
-    color:saddlebrown;
-    font-family: Arial, sans-serif;
+    background-color: papayawhip;
+    color: saddlebrown;
+    font-family: "Nunito", Arial, sans-serif;
+    margin: 0;
 }
 
 button {
     padding: 12px 24px;
     background-color: saddlebrown;
-    color:white;
+    color: white;
     border: 1px solid khaki;
+    border-radius: 10px;
     cursor: pointer;
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(107, 74, 54, 0.18);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .taskbar {
@@ -23,7 +39,7 @@ button {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 64px;
+    height: 76px;
     background-color: saddlebrown;
     color: papayawhip;
     display: flex;
@@ -40,33 +56,90 @@ button {
     width: 560px;
     background-color: papayawhip;
     border: 2px solid saddlebrown;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 32px rgba(107, 74, 54, 0.18);
+}
+
+.app-window:not([hidden]) {
+    animation: windowOpen 0.2s ease-out;
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-window:not([hidden]) {
+        animation: none;
+    }
 }
 
 .window-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 10px;
+    padding: 10px 14px;
     gap: 10px;
     background-color: saddlebrown;
     color: papayawhip;
     cursor: move;
     user-select: none;
+    font-family: "Chewy", cursive;
+    font-size: 18px;
+    letter-spacing: 0.4px;
 }
 
 .app-window textarea {
     display: block;
-    width: calc(100% - 20px);
+    width: calc(100% - 24px);
     height: 280px;
-    margin: 10px;
+    margin: 12px;
+    padding: 12px 14px;
     box-sizing: border-box;
     resize: none;
+    border: 1px solid #b58c67;
+    border-radius: 12px;
+    background-color: #fff8ee;
+    color: #6b4a36;
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
 #copyNotes,
 #clearNotes {
     padding: 6px 12px;
     margin: 0 10px 10px;
+}
+
+.app-window p,
+.app-window input,
+.app-window textarea,
+.app-window button {
+    font-family: "Nunito", Arial, sans-serif;
+}
+
+.app-window p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.app-window h3 {
+    margin: 0 0 10px;
+    font-family: "Chewy", cursive;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: saddlebrown;
 }
 
 .window-buttons {
@@ -102,9 +175,23 @@ button {
     scrollbar-color: #8b4513 #f5e6d3;
 }
 
+.about-content h3 {
+    margin: 0 0 14px;
+    text-align: center;
+    font-family: "Chewy", cursive;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.about-content p {
+    margin: 0 0 12px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
 .desktop-apps {
     display: flex;
-    gap: 12px;
+    gap: 16px;
 }
 
 .desktop-app {
@@ -131,6 +218,14 @@ button {
 .clock-content {
     padding: 20px;
     text-align: center;
+}
+
+#clock {
+    margin: 0;
+    font-family: "Chewy", cursive;
+    font-size: 56px;
+    font-weight: 400;
+    color: saddlebrown;
 }
 
 #welcomeScreen {
@@ -161,6 +256,33 @@ button {
     display: none;
 }
 
+#desktopDateTime {
+    position: fixed;
+    top: 16px;
+    right: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 10px 14px;
+    background-color: #fff8ee;
+    color: saddlebrown;
+    border: 1px solid #b58c67;
+    border-radius: 12px;
+    box-shadow: 0 5px 14px rgba(107, 74, 54, 0.12);
+    pointer-events: none;
+}
+
+#desktopTime {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+#desktopDate {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
 
 .loading-bar {
     width: 240px;
@@ -185,7 +307,7 @@ button {
 
 #desktopScreen {
     min-height: 100vh;
-    background-color: #F5E6D3;
+    background: radial-gradient(circle at center, #fff4e2, #ead3b5);
 }
 
 .desktop-wallpaper {
@@ -249,17 +371,37 @@ button {
     background-color: #f7ead7;
 }
 
+.calculator-screen {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border: 2px solid #b58c67;
+    border-radius: 8px;
+    background-color: #fffaf3;
+}
+
+#calcHistory {
+    height: 20px;
+    padding: 0;
+    margin-bottom: 4px;
+    color: #b58c67;
+    font-size: 13px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 #calcDisplay {
     width: 100%;
-    height: 56px;
+    height: 50px;
     box-sizing: border-box;
-    margin-bottom: 12px;
-    padding: 0 12px;
-    border: 2px solid #B58C67;
-    background-color: #fffaf3;
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
     color: saddlebrown;
     font-size: 28px;
     text-align: right;
+    outline: none;
 }
 
 .calculator-buttons {
@@ -336,13 +478,26 @@ button {
 }
 
 .settings-body {
-    padding: 16px;
+    padding: 18px;
+}
+
+.settings-body h3 {
+    margin: 0 0 6px;
+    font-family: "Chewy", cursive;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.settings-body p {
+    margin: 0 0 12px;
+    font-size: 15px;
 }
 
 .settings-body button {
+    min-width: 120px;
     padding: 10px 14px;
     margin: 5px;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 body.dark-theme {
@@ -351,17 +506,29 @@ body.dark-theme {
 }
 
 body.dark-theme #desktopScreen {
-    background-color: #241d18;
+    background: radial-gradient(circle at center, #483629, #241d18);
+}
+
+body.dark-theme #desktopDateTime {
+    background-color: #382d25;
+    color: #fff1dd;
+    border-color: #9a7250;
 }
 
 body.dark-theme .app-window {
     background-color: #382d25;
     border-color: #bf9167;
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35);
 }
 
 body.dark-theme .window-title {
     background-color: #654028;
     color: #fff2e4;
+}
+
+body.dark-theme .app-window h3,
+body.dark-theme #clock {
+    color: #fff1dd;
 }
 
 body.dark-theme .taskbar {
@@ -376,6 +543,15 @@ body.dark-theme .desktop-app {
 
 body.dark-theme .calculator-body {
     background-color: #382d25;
+}
+
+body.dark-theme .calculator-screen {
+    background-color: #241d18;
+    border-color: #9a7250;
+}
+
+body.dark-theme #calcHistory {
+    color: #d9b99b;
 }
 
 body.dark-theme #calcDisplay,
@@ -426,6 +602,21 @@ body.dark-theme .about-content {
     font-family: "Chewy", cursive;
     font-size: 34px;
     font-weight: 400;
+    position: fixed;
+    top: calc(50% - 250px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#desktopWelcome {
+    position: fixed;
+    top: calc(50% - 155px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    text-align: center;
 }
 
 #welcomeScreen p,
@@ -619,4 +810,76 @@ body.dark-theme #achievementToast {
         max-width: calc(100vw - 20px);
         box-sizing: border-box;
     }
+}
+
+#musicWindow {
+    width: 330px;
+    top: 140px;
+    left: 50px;
+}
+
+.music-body {
+    padding: 16px;
+}
+
+.music-card {
+    padding: 16px;
+    border: 1px solid #b58c67;
+    border-radius: 12px;
+    background-color: #fff0d7;
+    text-align: center;
+}
+
+#musicWindow .music-heading {
+    margin: 0 0 8px;
+    font-family: "Chewy", cursive;
+    font-size: 28px;
+    color: saddlebrown;
+}
+
+#musicWindow .music-subtext {
+    margin: 0 0 14px;
+    font-size: 14px;
+    color: #6B4A36;
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+#playMusic,
+#stopMusic {
+    margin: 0;
+    min-width: 100px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#musicStatus {
+    display: inline-block;
+    margin: 0;
+    padding: 8px 14px;
+    border: 1px solid #b58c67;
+    border-radius: 999px;
+    background-color: #fff8ee;
+    font-size: 14px;
+}
+
+body.dark-theme .music-card {
+    background-color: #49301f;
+    border-color: #bf9167;
+}
+
+body.dark-theme #musicWindow .music-heading,
+body.dark-theme #musicWindow .music-subtext,
+body.dark-theme #musicStatus {
+    color: #fff1dd;
+}
+
+body.dark-theme #musicStatus {
+    background-color: #382d25;
+    border-color: #bf9167;
 }

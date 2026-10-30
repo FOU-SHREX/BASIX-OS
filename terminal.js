@@ -15,7 +15,7 @@ function printLine(text) {
 
 function runCommand(command, args) {
     if (command === "help") {
-        return "help, clear, pwd, ls, whoami, hostname, date, time, echo, history, about, capy, exit";
+        return "help, clear, pwd, ls, mkdir, whoami, hostname, date, time, echo, history, about, capy, exit";
     }
 
     if (command === "clear") {

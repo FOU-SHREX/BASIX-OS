@@ -10,6 +10,19 @@ function updateClock() {
 
     document.getElementById("clock").textContent =
         now.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"});
+
+    document.getElementById("desktopTime").textContent =
+        now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+    document.getElementById("desktopDate").textContent =
+        now.toLocaleDateString([], {
+            weekday: "short",
+            month: "short",
+            day: "numeric"
+        });
 }
 
 updateClock();
@@ -71,7 +84,7 @@ document.addEventListener("mousemove", function(event) {
     if (!activeWindow) return;
 
     const maxX = Math.max(0, window.innerWidth - activeWindow.offsetWidth);
-    const maxY = Math.max(0, window.innerHeight - activeWindow.offsetHeight - 48);
+    const maxY = Math.max(0, window.innerHeight - activeWindow.offsetHeight - 76);
 
     const x = event.clientX - offsetX;
     const y = event.clientY - offsetY;
@@ -135,6 +148,7 @@ document.getElementById("closeCalculator").addEventListener("click", function() 
 });
 
 const calcDisplay = document.getElementById("calcDisplay");
+const calcHistory = document.getElementById("calcHistory");
 
 let firstNumber = null;
 let operator = null;
@@ -147,12 +161,20 @@ function calculate(a, b, op) {
     if (op === "/") return a / b;
 }
 
+function calcSymbol(op) {
+    if (op === "*") return "×";
+    if (op === "/") return "÷";
+    if (op === "-") return "−";
+    return "+";
+}
+
 document.querySelectorAll(".calculator-buttons button").forEach(function(button) {
     button.addEventListener("click", function() {
         const value = button.dataset.value;
 
         if (value === "C") {
             calcDisplay.value = "0";
+            calcHistory.textContent = "";
             firstNumber = null;
             operator = null;
             newNumber = true;
@@ -160,6 +182,10 @@ document.querySelectorAll(".calculator-buttons button").forEach(function(button)
         }
 
         if (Number.isInteger(Number(value))) {
+            if (newNumber && operator === null) {
+                calcHistory.textContent = "";
+            }
+
             if (newNumber || calcDisplay.value === "0") {
                 calcDisplay.value = value;
             } else {
@@ -171,6 +197,10 @@ document.querySelectorAll(".calculator-buttons button").forEach(function(button)
         }
 
         if (value === ".") {
+            if (newNumber && operator === null) {
+                calcHistory.textContent = "";
+            }
+
             if (newNumber) {
                 calcDisplay.value = "0.";
                 newNumber = false;
@@ -199,12 +229,14 @@ document.querySelectorAll(".calculator-buttons button").forEach(function(button)
 
             firstNumber = Number(calcDisplay.value);
             operator = value;
+            calcHistory.textContent = firstNumber + " " + calcSymbol(operator);
             newNumber = true;
             return;
         }
 
         if (value === "=" && operator !== null && !newNumber) {
             const secondNumber = Number(calcDisplay.value);
+            calcHistory.textContent = firstNumber + " " + calcSymbol(operator) + " " + secondNumber + " =";
             const result = calculate(firstNumber, secondNumber, operator);
 
             if (!Number.isFinite(result)) {
@@ -229,10 +261,10 @@ const galleryPhotos = [
     ["assets/welcome-capy.png", "Capy fixing BASIX OS"],
     ["assets/capy-orange-bath.png", "Orange capy taking a warm bath"],
     ["assets/capy-gallery-2.png", "Builder capy ready to fix BASIX OS"],
-    ["assets/capy-gallery-3.png", "Cute capy moment"],
-    ["assets/capy-gallery-4.png", "Just Capy vacation"],
+    ["assets/capy-gallery-3.png", "CAPY having lunch"],
+    ["assets/capy-gallery-4.png", "CAPY doing absolutely nothing"],
     ["assets/capy-gallery-5.png", "Another funny capy pose"],
-    ["assets/capy-gallery-6.png", "Suspicious capy look"]
+    ["assets/capy-gallery-6.png", "CAPY's new bird taxi service"]
 ];
 
 let galleryIndex = 0;
@@ -259,6 +291,33 @@ document.getElementById("nextImage").addEventListener("click", function() {
 document.getElementById("prevImage").addEventListener("click", function() {
     galleryIndex = (galleryIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
     showGalleryImage();
+});
+
+const musicWindow = document.getElementById("musicWindow");
+const capyAudio = document.getElementById("capyAudio");
+const musicStatus = document.getElementById("musicStatus");
+const playMusic = document.getElementById("playMusic");
+const stopMusic = document.getElementById("stopMusic");
+
+document.getElementById("openMusic").addEventListener("click", function() {
+    musicWindow.hidden = false;
+});
+
+document.getElementById("closeMusic").addEventListener("click", function() {
+    musicWindow.hidden = true;
+});
+
+playMusic.addEventListener("click", function() {
+    capyAudio.play().then(function() {
+        musicStatus.textContent = "Status: Playing";
+    }).catch(function() {
+        musicStatus.textContent = "Status: Could not play";
+    });
+});
+
+stopMusic.addEventListener("click", function() {
+    capyAudio.pause();
+    musicStatus.textContent = "Status: Paused";
 });
 
 const settingsWindow = document.getElementById("settingsWindow");
@@ -540,7 +599,9 @@ function countCapyTalk() {
     capyTalkCount += 1;
     localStorage.setItem("basixCapyTalkCount", capyTalkCount);
 
-    unlockAchievement("CAPY Has Awoken");
+    if (capyTalkCount >= 12) {
+        unlockAchievement("CAPY Has Awoken");
+    }
 
     if (capyTalkCount >= 10) {
         unlockAchievement("Professional Annoyance");
@@ -561,14 +622,16 @@ document.getElementById("clickCapy").addEventListener("click", function() {
     }
 });
 
-paintCanvas.addEventListener("pointerdown", function() {
-    unlockAchievement("CAPYcasso");
+paintCanvas.addEventListener("pointermove", function() {
+    if (painting) {
+        unlockAchievement("CAPYcasso");
+    }
 });
 
 const appButtons = [
     "openNotes", "openAbout", "openClock",
     "openTerminal", "openCalculator", "openGallery",
-    "openSettings", "openClicker", "openPaint"
+    "openSettings", "openClicker", "openPaint","openMusic",
 ];
 
 appButtons.forEach(function(id) {
