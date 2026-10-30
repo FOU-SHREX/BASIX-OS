@@ -1,6 +1,6 @@
 # CAPYBARA CAPYBARA CAPYBARA
 
-## BASIX OS - WebOS 2
+## BASIX OS - WebOS 2 (v2.1 Feedback Edition)
 
 A simple WebOS made by CAPYBARA!
 
@@ -9,6 +9,21 @@ A simple WebOS made by CAPYBARA!
 BASIX OS is a Basic browser based OS with capybara theme.
 
 This is my first time working on a project with HTML, CSS and JavaScript. I started with WebOS 1 and now added more apps and features for WebOS 2!
+
+## What's New in v2.1?
+
+After getting feedback on WebOS 2, I decided to improve BASIX OS a little more!
+
+- Improved the UI with better fonts, rounded corners and shadows
+- Added smoother animations when opening apps
+- Added a small clock and date widget on the desktop
+- Improved Capy Calculator with a small calculation display
+- Added Capy Music with Play and Pause buttons
+- Added some real Capybara photos to the Gallery
+- Fixed some Dark Mode issues
+- Tested the OS again and passed all 32 manual tests!
+
+CAPY says this update took a lot of hard work. I literally saw him sleeping the whole time 💀
 
 ## Features
 
@@ -25,6 +40,7 @@ This is my first time working on a project with HTML, CSS and JavaScript. I star
 - Custom Capybara wallpapers
 - Orange earn!
 - Draw something in Capy Paint
+- Capy Music
 - Some Data is saved even after refreshing
 
 ## Apps
@@ -48,6 +64,8 @@ This is my first time working on a project with HTML, CSS and JavaScript. I star
 - Capy Achievements - Find and unlock 5 secret achievements
 
 - Capy Settings - Change wallpapers and themes
+
+- Capy Music - Play, pause and enjoy music while exploring BASIX OS
 
 ## Try BASIX OS
 
@@ -81,6 +99,8 @@ While making this project I learned about:
 - Making small basic apps and games
 - Using canvas for drawing
 - Hosting a website using GitHub Pages
+- Using CSS Animation and improving UI design
+- Working with audio playback using JavaScript
 
 ## Future Updates
 
@@ -99,3 +119,7 @@ And Repo of other webOS creators Thanks all of you for making such good things O
 
 *CAPYBARA CAPYBARA CAPYBAAARA CAPYBBBARAR*
 *CAPY is sleeping he said will work when he got good ratings*
+
+## Credits
+
+Real Capybara photo credits and licenses: [ASSET_CREDITS.md](ASSET_CREDITS.md)
