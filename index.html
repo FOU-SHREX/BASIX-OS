@@ -70,11 +70,30 @@
     </div>
     <div id="clockWindow" class="app-window" hidden>
         <div class="window-title">
-            <span>Capy Clock</span>
-            <button id="closeClock" class="window-dot red" aria-label="Close clock"></button>
+            <span>Capy Timer</span>
+            <button id="closeClock" class="window-dot red" aria-label="Close timer"></button>
         </div>
         <div class="clock-content">
-            <h2 id="clock">--:--</h2>
+            <h2 id="timerDisplay">10:00</h2>
+            <p id="timerStatus">Choose a time and press Start!</p>
+
+            <div class="timer-presets">
+                <button data-minutes="1">1 min</button>
+                <button data-minutes="5">5 min</button>
+                <button data-minutes="10">10 min</button>
+                <button data-minutes="15">15 min</button>
+                <button data-minutes="25">25 min</button>
+                <button data-minutes="30">30 min</button>
+                <button data-minutes="45">45 min</button>
+                <button data-minutes="60">1 hr</button>
+                <button id="timerStopwatch">Stopwatch</button>
+            </div>
+
+            <div class="timer-controls">
+                <button id="timerStart">Start</button>
+                <button id="timerPause">Pause</button>
+                <button id="timerReset">Reset</button>
+            </div>
         </div>
     </div>
     <div id="terminalWindow" class="app-window" hidden>
@@ -258,6 +277,30 @@
         </div>
     </div>
 
+    <div id="snakeWindow" class="app-window" hidden>
+        <div class="window-title">
+            <span>Capy Snake</span>
+            <button id="closeSnake" class="window-dot red" aria-label="Close Snake"></button>
+        </div>
+
+        <div class="snake-content">
+            <div class="snake-scoreboard">
+                <span>Orange: <strong id="snakeScore">0</strong></span>
+                <span>Best: <strong id="snakeBest">0</strong></span>
+            </div>
+
+            <canvas id="snakeCanvas" width="400" height="400"></canvas>
+
+            <p id="snakeMessage">Eat orange. Don't eat yourself!</p>
+
+            <div class="snake-controls">
+                <button id="snakeStart">Start</button>
+                <button id="snakePause">Pause</button>
+                <button id="snakeRestart">Restart</button>
+            </div>
+        </div>
+    </div>
+
     <div class="taskbar">
         <div class="desktop-apps">
             <button id="openNotes" class="desktop-app" title="Capy Notes" aria-label="Open Capy Notes">
@@ -273,7 +316,7 @@
                     <circle cx="12" cy="8" r="1.1" fill="currentColor" stroke="none"></circle>
                 </svg>
             </button>
-            <button id="openClock" class="desktop-app" title="Capy Clock" aria-label="Open Capy Clock">
+            <button id="openClock" class="desktop-app" title="Capy Timer" aria-label="Open Capy Timer">
                 <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 6v6l4 3"></path>
@@ -319,17 +362,25 @@
                     <path d="M12 16v4 M8 20h8"></path>
                 </svg>
             </button>
-            <button id="openSettings" class="desktop-app" title="Capy Settings" aria-label="Open Capy Settings">
-                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M10 2h4l1 3 3-1 2 2-1 3 3 1v4l-3 1 1 3-2 2-3-1-1 3h-4l-1-3-3 1-2-2 1-3-3-1v-4l3-1-1-3 2-2 3 1z"/>
-                    <circle cx="12" cy="12" r="3"></circle>
+            <button id="openSnake" class="desktop-app" title="Capy Snake" aria-label="Open Capy Snake">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19h9a4 4 0 0 0 0-8h-3a3 3 0 0 1 0-6h5"></path>
+                    <path d="M15 3h3a3 3 0 0 1 3 3v1h-6z"></path>
+                    <circle cx="18.5" cy="5" r="0.7" fill="currentColor" stroke="none"></circle>
+                    <path d="M21 6h2"></path>
                 </svg>
             </button>
-            <button id="openMusic" class="desktop-app" title="Capy Music" aria-label="Open Capy Music">
+             <button id="openMusic" class="desktop-app" title="Capy Music" aria-label="Open Capy Music">
                 <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
                     <path d="M9 18V5l11-2v13"></path>
                     <circle cx="6" cy="18" r="3"></circle>
                     <circle cx="17" cy="16" r="3"></circle>
+                </svg>
+            </button>
+            <button id="openSettings" class="desktop-app" title="Capy Settings" aria-label="Open Capy Settings">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M10 2h4l1 3 3-1 2 2-1 3 3 1v4l-3 1 1 3-2 2-3-1-1 3h-4l-1-3-3 1-2-2 1-3-3-1v-4l3-1-1-3 2-2 3 1z"/>
+                    <circle cx="12" cy="12" r="3"></circle>
                 </svg>
             </button>
         </div>
@@ -337,5 +388,6 @@
 </div>
   <script src="script.js"></script>
   <script src="terminal.js"></script>
+  <script src="snake.js"></script>
 </body>
 </html>

@@ -77,6 +77,23 @@ button:active {
     }
 }
 
+.app-window.closing {
+    animation: windowClose 0.2s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes windowClose {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .app-window:not([hidden]) {
         animation: none;
@@ -210,7 +227,7 @@ button:active {
 }
 
 #clockWindow {
-    width: 280px;
+    width: 340px;
     top: 130px;
     left: 360px;
 }
@@ -220,12 +237,80 @@ button:active {
     text-align: center;
 }
 
-#clock {
+#timerDisplay {
     margin: 0;
     font-family: "Chewy", cursive;
     font-size: 56px;
     font-weight: 400;
     color: saddlebrown;
+}
+
+#timerStatus {
+    min-height: 24px;
+    margin: 8px 0;
+}
+
+.timer-presets,
+.timer-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+
+#clockWindow .clock-content button {
+    padding: 9px 4px;
+    font-size: 14px;
+}
+
+body.dark-theme #clockWindow .clock-content button {
+    background-color: #70503a;
+    color: #fff1dd;
+    border-color: #9a7350;
+}
+
+#snakeWindow {
+    width: 450px;
+    max-width: calc(100vw - 20px);
+    box-sizing: border-box;
+    top: 90px;
+    left: 150px;
+}
+
+.snake-content {
+    padding: 14px;
+    text-align: center;
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+}
+
+.snake-scoreboard {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+#snakeCanvas {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 12px auto;
+    background-color: #2C241D;
+    border: 2px solid #b58c67;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.snake-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.snake-controls button {
+    padding: 9px 4px;
+    font-size: 14px;
 }
 
 #welcomeScreen {
@@ -527,7 +612,7 @@ body.dark-theme .window-title {
 }
 
 body.dark-theme .app-window h3,
-body.dark-theme #clock {
+body.dark-theme #timerDisplay {
     color: #fff1dd;
 }
 

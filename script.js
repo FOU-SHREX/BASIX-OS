@@ -7,10 +7,6 @@ setTimeout(showDesktop, 3000)
 
 function updateClock() {
     const now = new Date();
-
-    document.getElementById("clock").textContent =
-        now.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"});
-
     document.getElementById("desktopTime").textContent =
         now.toLocaleTimeString([], {
             hour: "2-digit",
@@ -28,6 +24,22 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000)
 
+function closeAppWindow(app) {
+    if (app.hidden || app.classList.contains("closing")) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        app.hidden = true;
+        return;
+    }
+
+    app.classList.add("closing");
+
+    setTimeout(function() {
+        app.hidden = true;
+        app.classList.remove("closing");
+    }, 200);
+}
+
 const notesWindow = document.getElementById("notesWindow");
 const notesText = document.querySelector("#notesWindow textarea");
 
@@ -38,7 +50,7 @@ notesText.addEventListener("input", function() {
 });
 
 document.getElementById("closeNotes").addEventListener("click", function() {
-    notesWindow.hidden = true;
+    closeAppWindow(notesWindow);
 });
 
 document.getElementById("openNotes").addEventListener("click", function() {
@@ -100,7 +112,7 @@ document.addEventListener("mouseup", function() {
 const aboutWindow = document.getElementById("aboutWindow");
 
 document.getElementById("closeAbout").addEventListener("click", function() {
-    aboutWindow.hidden = true;
+    closeAppWindow(aboutWindow);
 });
 
 document.getElementById("openAbout").addEventListener("click", function() {
@@ -116,6 +128,32 @@ document.querySelectorAll(".app-window").forEach(function(app) {
     });
 });
 
+const appWindows = {
+    openNotes: "notesWindow",
+    openAbout: "aboutWindow",
+    openClock: "clockWindow",
+    openTerminal: "terminalWindow",
+    openCalculator: "calculatorWindow",
+    openGallery: "galleryWindow",
+    openClicker: "clickerWindow",
+    openPaint: "paintWindow",
+    openAchievements: "achievementWindow",
+    openSnake: "snakeWindow",
+    openMusic: "musicWindow",
+    openSettings: "settingsWindow"
+};
+
+document.querySelectorAll(".desktop-app").forEach(function(button) {
+    button.addEventListener("click", function() {
+        const app = document.getElementById(appWindows[button.id]);
+
+        if (app) {
+            toplayer += 1;
+            app.style.zIndex = toplayer;
+        }
+    });
+});
+
 const clockWindow = document.getElementById("clockWindow");
 
 document.getElementById("openClock").addEventListener("click", function() {
@@ -123,8 +161,104 @@ document.getElementById("openClock").addEventListener("click", function() {
 });
 
 document.getElementById("closeClock").addEventListener("click", function() {
-    clockWindow.hidden = true
+    closeAppWindow(clockWindow);
 })
+
+const timerDisplay = document.getElementById("timerDisplay");
+const timerStatus = document.getElementById("timerStatus");
+
+let timerDuration = 600;
+let timerSeconds = timerDuration;
+let stopwatchMode = false;
+let timerInterval = null;
+let timerTarget = 0;
+
+function displayTimer() {
+    const minutes = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
+    const seconds = String(timerSeconds % 60).padStart(2, "0");
+
+    timerDisplay.textContent = minutes + ":" + seconds;
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+function tickTimer() {
+    timerSeconds = stopwatchMode
+        ? Math.floor((Date.now() - timerTarget) / 1000)
+        : Math.max(0, Math.ceil((timerTarget - Date.now()) / 1000));
+
+    displayTimer();
+
+    if (!stopwatchMode && timerSeconds === 0) {
+        stopTimer();
+        timerStatus.textContent = "Time's up! CAPY wants an orange! 🍊";
+        document.getElementById("capyReaction").textContent =
+        "TIME's UP! ORANGE BREAK! 🍊"
+    }
+}
+
+document.querySelectorAll("#clockWindow [data-minutes]").forEach(function(button) {
+    button.addEventListener("click", function() {
+        stopTimer();
+        stopwatchMode = false;
+
+        timerDuration = Number(button.dataset.minutes) * 60;
+        timerSeconds = timerDuration;
+
+        timerStatus.textContent = button.dataset.minutes + " minute timer ready.";
+        displayTimer();
+    });
+});
+
+document.getElementById("timerStopwatch").addEventListener("click", function() {
+    stopTimer();
+    stopwatchMode = true;
+    timerSeconds = 0;
+
+    timerStatus.textContent = "Stopwatch ready.";
+    displayTimer();
+});
+
+document.getElementById("timerStart").addEventListener("click", function() {
+    if (timerInterval !== null) return;
+
+    if (!stopwatchMode && timerSeconds === 0) {
+        timerSeconds = timerDuration;
+    }
+
+    timerTarget = stopwatchMode
+        ? Date.now() - timerSeconds * 1000
+        : Date.now() + timerSeconds * 1000;
+
+    timerInterval = setInterval(tickTimer, 200);
+
+    timerStatus.textContent = stopwatchMode
+        ? "Stopwatch running..."
+        : "Timer running...";
+});
+
+document.getElementById("timerPause").addEventListener("click", function() {
+    if (timerInterval === null) return;
+
+    tickTimer();
+
+    if (timerInterval !== null) {
+        stopTimer();
+        timerStatus.textContent = "Paused.";
+    }
+});
+
+document.getElementById("timerReset").addEventListener("click", function() {
+    stopTimer();
+
+    timerSeconds = stopwatchMode ? 0 : timerDuration;
+
+    timerStatus.textContent = "Ready.";
+    displayTimer();
+});
 
 const terminalWindow = document.getElementById("terminalWindow");
 
@@ -134,7 +268,7 @@ document.getElementById("openTerminal").addEventListener("click", function() {
 });
 
 document.getElementById("closeTerminal").addEventListener("click", function() {
-    terminalWindow.hidden = true;
+    closeAppWindow(terminalWindow);
 });
 
 const calculatorWindow = document.getElementById("calculatorWindow");
@@ -144,7 +278,7 @@ document.getElementById("openCalculator").addEventListener("click", function() {
 });
 
 document.getElementById("closeCalculator").addEventListener("click", function() {
-    calculatorWindow.hidden = true;
+    closeAppWindow(calculatorWindow);
 });
 
 const calcDisplay = document.getElementById("calcDisplay");
@@ -280,7 +414,7 @@ document.getElementById("openGallery").addEventListener("click", function() {
 });
 
 document.getElementById("closeGallery").addEventListener("click", function() {
-    galleryWindow.hidden = true;
+    closeAppWindow(galleryWindow);
 });
 
 document.getElementById("nextImage").addEventListener("click", function() {
@@ -304,7 +438,7 @@ document.getElementById("openMusic").addEventListener("click", function() {
 });
 
 document.getElementById("closeMusic").addEventListener("click", function() {
-    musicWindow.hidden = true;
+    closeAppWindow(musicWindow);
 });
 
 playMusic.addEventListener("click", function() {
@@ -330,7 +464,7 @@ document.getElementById("openSettings").addEventListener("click", function() {
 });
 
 document.getElementById("closeSettings").addEventListener("click", function() {
-    settingsWindow.hidden = true;
+    closeAppWindow(settingsWindow);
 });
 
 document.getElementById("pondWallpaper").addEventListener("click", function() {
@@ -388,7 +522,7 @@ document.getElementById("openClicker").addEventListener("click", function() {
 });
 
 document.getElementById("closeClicker").addEventListener("click", function() {
-    clickerWindow.hidden = true;
+    closeAppWindow(clickerWindow);
     oranges = 0;
     clickerScore.textContent = "Oranges: 0";
     clickerMessage.textContent = "CAPY is waiting for the oranges...";
@@ -459,7 +593,7 @@ document.getElementById("openPaint").addEventListener("click", function() {
 });
 
 document.getElementById("closePaint").addEventListener("click", function() {
-    paintWindow.hidden = true;
+    closeAppWindow(paintWindow);
 });
 
 document.querySelectorAll(".paint-tools [data-color]").forEach(function(button) {
@@ -535,7 +669,17 @@ document.getElementById("openAchievements").addEventListener("click", function()
 });
 
 document.getElementById("closeAchievements").addEventListener("click", function() {
-    achievementWindow.hidden = true;
+    closeAppWindow(achievementWindow);
+});
+
+const snakeWindow = document.getElementById("snakeWindow");
+
+document.getElementById("openSnake").addEventListener("click", function() {
+    snakeWindow.hidden = false;
+});
+
+document.getElementById("closeSnake").addEventListener("click", function() {
+    closeAppWindow(snakeWindow);
 });
 
 const achievementNames = [

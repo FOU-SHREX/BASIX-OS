@@ -1,6 +1,6 @@
 # CAPYBARA CAPYBARA CAPYBARA
 
-## BASIX OS - WebOS 2 (v2.1 Feedback Edition)
+## BASIX OS - WebOS 2 (v2.2)
 
 A simple WebOS made by CAPYBARA!
 
@@ -9,6 +9,19 @@ A simple WebOS made by CAPYBARA!
 BASIX OS is a Basic browser based OS with capybara theme.
 
 This is my first time working on a project with HTML, CSS and JavaScript. I started with WebOS 1 and now added more apps and features for WebOS 2!
+
+## What's New in v2.2?
+
+Another BASIX OS update! CAPY apparently wanted more things to do instead of sleeping.
+
+- Replaced Capy Clock with Capy Timer, with 8 countdown presets and a stopwatch
+- Improved Capy Terminal with file commands, command history and saved files
+- Added Capy Snake with oranges, increasing speed and high scores
+- Added smooth closing animations to all app windows
+- Fixed window stacking so apps open in front of each other
+- Added a small black eye to the Snake because even I couldn't tell where its head was 💀
+
+CAPY finally has a game to play, but somehow he keeps eating himself. 🦫🍊
 
 ## What's New in v2.1?
 
@@ -29,9 +42,9 @@ CAPY says this update took a lot of hard work. I literally saw him sleeping the 
 
 - Welcome screen with loading animation
 - Draggable windows
-- Live clock
+- Live clock and date widget on the desktop
 - Bottom taskbar with app-icon
-- Open and close windows
+- Smooth opening and closing animations for app windows
 - Capy Notes - Write and copy text with copy and clear buttons
 - Capy Info - Some suspecious about CAPY
 - Simple brown and cream theme
@@ -42,6 +55,9 @@ CAPY says this update took a lot of hard work. I literally saw him sleeping the 
 - Draw something in Capy Paint
 - Capy Music
 - Some Data is saved even after refreshing
+- Capy Timer with countdown presets and stopwatch
+- Capy Terminal with file commands and saved files
+- Capy Snake with oranges, increasing difficulty and high scores
 
 ## Apps
 
@@ -49,9 +65,9 @@ CAPY says this update took a lot of hard work. I literally saw him sleeping the 
 
 - Capy Info - Learn about CAPY and his very busy life
 
-- Capy Clock - Check the time
+- Capy Timer - Countdown timer and stopwatch with Start, Pause and Reset
 
-- Capy Terminal - A basic terminal with commands
+- Capy Terminal - Create files, folders, write text and try funny CAPY commands
 
 - Capy Calculator - Do simple calculations
 
@@ -63,9 +79,11 @@ CAPY says this update took a lot of hard work. I literally saw him sleeping the 
 
 - Capy Achievements - Find and unlock 5 secret achievements
 
-- Capy Settings - Change wallpapers and themes
+- Capy Snake - Eat oranges, grow longer and try not to die 💀
 
 - Capy Music - Play, pause and enjoy music while exploring BASIX OS
+
+- Capy Settings - Change wallpapers and themes
 
 ## Try BASIX OS
 
@@ -97,16 +115,18 @@ While making this project I learned about:
 - Using localStorage
 - Making draggable windows
 - Making small basic apps and games
-- Using canvas for drawing
+- Making a Snake game using arrays, movement and collision detection
+- Using HTML Canvas for drawing and making games
 - Hosting a website using GitHub Pages
 - Using CSS Animation and improving UI design
 - Working with audio playback using JavaScript
+- Using Date.now() and setInterval() for timers and game loops
 
 ## Future Updates
 
-I might need more apps and improve the terminal in future updates and for now its becoming complex for me so I leave that to basic commands only.
+Might add another mini-game or some funny CAPY features in future updates. For now, Terminal and Snake are done and CAPY needs some rest.
 
-For now CAPY is tired and needs some sleep.
+He worked really hard this time (I saw him sleeping again). 💀
 
 ## Credits
 
@@ -115,11 +135,17 @@ Made by CAPYBARA (As he said so...)
 And StarDance WebOS guide way a huge help.
 And Repo of other webOS creators Thanks all of you for making such good things Open-Source
 
+For Capy Snake, these open-source projects helped me understand the game logic. Thanks to the creators!
+
+- [wasay-khanzada/Snake-Game](https://github.com/wasay-khanzada/Snake-Game)
+- [hridik-suresh/vanilla-js-snake-game](https://github.com/hridik-suresh/vanilla-js-snake-game)
+- [varshney-himanshu/snake-game-js](https://github.com/varshney-himanshu/snake-game-js)
+
 ## Last Message 
 
 *CAPYBARA CAPYBARA CAPYBAAARA CAPYBBBARAR*
 *CAPY is sleeping he said will work when he got good ratings*
 
-## Credits
+## Asset Credits
 
-Real Capybara photo credits and licenses: [ASSET_CREDITS.md](ASSET_CREDITS.md)
+Real Capybara photo credits and music information: [ASSET_CREDITS.md](ASSET_CREDITS.md)
